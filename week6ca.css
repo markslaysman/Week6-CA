@@ -1,0 +1,33 @@
+/* General CSS Styling for main page */
+
+body {
+	background-color: rgb(199, 197, 191);
+}
+
+blockquote {
+	margin: 0;
+}
+
+blockquote p {
+	padding: 15px;
+	background: #eee;
+	border-radius: 5px;
+}
+
+blockquote p::before {
+	content: '\201C';
+}
+
+blockquote p::after {
+	content: '\201D';
+}
+
+figcaption {
+	text-align: right;
+}
+
+#warQuote {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

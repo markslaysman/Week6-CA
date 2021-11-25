@@ -7,10 +7,18 @@
 //   On each iteration compare the card value between the players
 //   The player with this highest card value wins
 //       In the event of a tie no point is given
-//   Once call cards have been iterated through display the scores of each player
+//   Once all cards have been iterated through display the scores of each player
 
 // General DEBUG_MODE option to console log when troubleshooting
 const DEBUG_MODE = false;
+
+// Getting some DOM objects to display data on webpage
+var roundResults = document.getElementById("gameResultsByRound");
+var gameResults = document.getElementById("gameFinalResults");
+var gameButton = document.getElementById("runGame");
+
+console.log(roundResults);
+//roundResults.innerHTML = 'Hello World';
 
 // import our CardDeck Class
 import Deck from "./classes/cardDeck.js";
@@ -83,29 +91,46 @@ function playWar(){
 
     for ( let i = 0; i < cardsToPlay; i++)
     {
-        let roundInfo = `Round ${i}:\t${player1.name} plays the ${player1.cards[i].showCard()}
-            ${player2.name} plays the ${player2.cards[i].showCard()}`
-        //console.log(roundInfo);
+        let roundInfo = `Round ${i + 1}:\t${player1.name} plays the ${player1.cards[i].showCard()}.
+            \t${player2.name} plays the ${player2.cards[i].showCard()}.`
 
         let winner = roundWinner(i);
-        //console.log(winner);
 
-        roundInfo += `\n\t\t\t\t${winner}`;
+        roundInfo += `\n\t\t\t${winner}`;
         console.log(roundInfo);
+        roundResults.innerHTML += `<pre> ${roundInfo} </pre>`;
     }
 }
 
 // Comapre player scores and find a winner
 function determineWinner(){
-    // If the scores are equal, suggest that players play again
+    //setup text for tied rounds, if any
+    let tiedRounds = '';
+    
+    if (ties === 0){
+        // Ties = 0 nothing to do or show
+    } else if (ties === 1){
+        //only 1 tie, so need singular form of round
+        tiedRounds = `Despite there being ${ties} tied round, `
+    } else {
+        //more then 1 round was a tie so now we need plural form of rounds
+        tiedRounds = `Despite there being ${ties} tied rounds, `
+    }
+
+    // If the scores are equal, suggest that players play again, otherwise show game and winner information
     if (player1.score === player2.score){
         console.log(`Statistics show it was a tie.  There are no ties in WAR you should play again.`);
+        gameResults.innerHTML = `<p>Statistics show it was a tie.  There are no ties in WAR you should play again.</p>`;
     } else if (player1.score > player2.score){
-        console.log(`Despite there being ${ties} tied rounds
+        console.log(`${tiedRounds}
             ${player1.name} has defeated ${player2.name} with a result of ${player1.score} to ${player2.score}.`);
+        gameResults.innerHTML = `<p>${tiedRounds}
+        ${player1.name} has defeated ${player2.name} with a result of ${player1.score} to ${player2.score}.<p>`;
     } else {
-        console.log(`Despite there being ${ties} tied rounds
+        console.log(`${tiedRounds} 
             ${player2.name} has defeated ${player1.name} with a result of ${player2.score} to ${player1.score}.`)
+        gameResults.innerHTML = `<p>${tiedRounds}
+        ${player2.name} has defeated ${player1.name} with a result of ${player2.score} to ${player1.score}.</p>`;
     }
 }
 
@@ -129,5 +154,10 @@ if (DEBUG_MODE) {
 
 // Play Game
 let ties = 0;  //needs to be put someplace else
-playWar();
-determineWinner();
+
+function runGame(){
+    playWar();
+    determineWinner();
+}
+
+gameButton.onclick = runGame;
