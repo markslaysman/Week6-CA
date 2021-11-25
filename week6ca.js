@@ -38,7 +38,6 @@ function resetPlayers(){
     player2.resetGameData();
 }
 
-
 // Shuffle the deck of cards
 const NUMBER_OF_SHUFFLES = 10;
 
@@ -165,9 +164,7 @@ function resetTieCount(){
     ties = 0;
 }
 
-
 // Play Game
-
 // Keep track of tied rounds
 let ties = 0;
 
