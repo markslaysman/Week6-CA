@@ -34,10 +34,20 @@ const cardDeck = new Deck();
 const player1 = new Player(`Doc Holliday`);
 const player2 = new Player(`Johnny Chan`);
 
+//Reset player data - specifically setting Score to 0, and cards to an empty array
+function resetPlayers(){
+    player1.resetGameData();
+    player2.resetGameData();
+}
+
+
 // Shuffle the deck of cards
 const NUMBER_OF_SHUFFLES = 10;
-for (let i = 0; i <= NUMBER_OF_SHUFFLES; i++) {
-    cardDeck.shuffleDeck();
+
+function shuffleCards(){
+    for (let i = 0; i <= NUMBER_OF_SHUFFLES; i++) {
+        cardDeck.shuffleDeck();
+    }
 }
 
 //Deal cards to players
@@ -143,19 +153,32 @@ if (DEBUG_MODE){
     }
 }
 
-// Card Deck is made and players are ready time to play the game:
-
-// Deal Cards to Players
-dealCards();
-if (DEBUG_MODE) {
-    console.log(player1.cards);
-    console.log(player2.cards);
+//Clear the Round Output Data on HTML page, otherwise it will keep adding data when a new game is played
+function clearRoundOutput(){
+    roundResults.innerHTML = '';
 }
+
+//Reset Tie Counter back to 0
+function resetTieCount(){
+    ties = 0;
+}
+
 
 // Play Game
 let ties = 0;  //needs to be put someplace else
 
 function runGame(){
+    clearRoundOutput();
+    resetPlayers();
+    resetTieCount();
+    shuffleCards();
+    dealCards();
+    
+    if (DEBUG_MODE) {
+        console.log(player1.cards);
+        console.log(player2.cards);
+    }
+    
     playWar();
     determineWinner();
 }
