@@ -9,6 +9,9 @@
 //      In the event of a tie no point is given
 //  Once call cards have been iterated through display the scores of each player
 
+//General DEBUG_MODE option to console log when troubleshooting
+const DEBUG_MODE = false;
+
 //import our CardDeck Class
 import Deck from "./classes/cardDeck.js";
 
@@ -31,20 +34,29 @@ for (let i = 0; i <= NUMBER_OF_SHUFFLES; i++) {
 function dealCards() {
     for (let i = 0; i < cardDeck.deck.length; i++) {
         if (i % 2 === 0) {
+            if(DEBUG_MODE) {console.log(`Player 1 is getting ${cardDeck.deck[i].showCard()}`)};
             player1.cards.push(cardDeck.deck[i])
         } else {
-            player1.cards.push(cardDeck.deck[i])
+            if(DEBUG_MODE) {console.log(`Player 2 is getting ${cardDeck.deck[i].showCard()}`)};
+            player2.cards.push(cardDeck.deck[i])
         }
     }
 }
 
+if (DEBUG_MODE) {console.log(cardDeck)};
 
+// For/In Loop to print out all cards in the Deck
+if (DEBUG_MODE){
+    for (let card in cardDeck.deck) {
+        console.log(cardDeck.deck[card].showCard());
+    }
+}
 
+//Deal Cards to Players
+dealCards();
 
-console.log(cardDeck);
-
-// For/In Loop to print out all cards
-for (let card in cardDeck.deck) {
-    console.log(cardDeck.deck[card].showCard());
+if (DEBUG_MODE) {
+    console.log(player1.cards);
+    console.log(player2.cards);
 }
 
