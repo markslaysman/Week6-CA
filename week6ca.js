@@ -9,16 +9,14 @@
 //       In the event of a tie no point is given
 //   Once all cards have been iterated through display the scores of each player
 
-// General DEBUG_MODE option to console log when troubleshooting
+// General DEBUG_MODE option to console log when troubleshooting.
+// Change value to true to output pre-determined lines to conole
 const DEBUG_MODE = false;
 
 // Getting some DOM objects to display data on webpage
 var roundResults = document.getElementById("gameResultsByRound");
 var gameResults = document.getElementById("gameFinalResults");
 var gameButton = document.getElementById("runGame");
-
-console.log(roundResults);
-//roundResults.innerHTML = 'Hello World';
 
 // import our CardDeck Class
 import Deck from "./classes/cardDeck.js";
@@ -99,6 +97,10 @@ function playWar(){
     let cardsToPlay = roundLength(player1.cards.length, player2.cards.length);
     if(DEBUG_MODE){console.log(`There will be ${cardsToPlay} cards played.`)};
 
+    roundResults.innerHTML += `<p>========================================</p>`
+    roundResults.innerHTML += `<pre>              Results by Round</pre>`
+    roundResults.innerHTML += `<p>========================================</p>`
+
     for ( let i = 0; i < cardsToPlay; i++)
     {
         let roundInfo = `Round ${i + 1}:\t${player1.name} plays the ${player1.cards[i].showCard()}.
@@ -153,19 +155,21 @@ if (DEBUG_MODE){
     }
 }
 
-//Clear the Round Output Data on HTML page, otherwise it will keep adding data when a new game is played
+// Clear the Round Output Data on HTML page, otherwise it will keep adding data when a new game is played
 function clearRoundOutput(){
     roundResults.innerHTML = '';
 }
 
-//Reset Tie Counter back to 0
+// Reset Tie Counter back to 0
 function resetTieCount(){
     ties = 0;
 }
 
 
 // Play Game
-let ties = 0;  //needs to be put someplace else
+
+// Keep track of tied rounds
+let ties = 0;
 
 function runGame(){
     clearRoundOutput();
@@ -183,4 +187,5 @@ function runGame(){
     determineWinner();
 }
 
+//Access the DOM and wait for someone to click on the Run Game button
 gameButton.onclick = runGame;
