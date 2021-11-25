@@ -64,6 +64,7 @@ function roundLength(numP1Cards, numP2Cards) {
 function roundWinner(currentCard){
     //If values are equal it's a tie, no winner
     if (player1.cards[currentCard].numericValue === player2.cards[currentCard].numericValue){
+        ties ++;
         return (`It's a tie, no winner this round.`);
     } else if (player1.cards[currentCard].numericValue > player2.cards[currentCard].numericValue){
         player1.score ++;
@@ -100,9 +101,11 @@ function determineWinner(){
     if (player1.score === player2.score){
         console.log(`Statistics show it was a tie.  There are no ties in WAR you should play again.`);
     } else if (player1.score > player2.score){
-        console.log(`${player1.name} has defeated ${player2.name} with a result of ${player1.score} to ${player2.score}.`);
+        console.log(`Despite there being ${ties} tied rounds
+            ${player1.name} has defeated ${player2.name} with a result of ${player1.score} to ${player2.score}.`);
     } else {
-        console.log(`${player2.name} has defeated ${player1.name} with a result of ${player2.score} to ${player1.score}.`)
+        console.log(`Despite there being ${ties} tied rounds
+            ${player2.name} has defeated ${player1.name} with a result of ${player2.score} to ${player1.score}.`)
     }
 }
 
@@ -125,5 +128,6 @@ if (DEBUG_MODE) {
 }
 
 // Play Game
+let ties = 0;  //needs to be put someplace else
 playWar();
 determineWinner();
