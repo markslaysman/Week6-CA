@@ -18,15 +18,15 @@ describe('Reset Tie Count', function() {
     });
 });
 
-describe('Creating a Player', function() {
-    describe('#creatingAPlayer', function() {
-        it('should create a new player from the Player class', function(){
+// describe('Creating a Player', function() {
+//     describe('#creatingAPlayer', function() {
+//         it('should create a new player from the Player class', function(){
+
+//             let p = new Player("TestPlayer1");
             
-            let p = new Player("TestPlayer1");
-            
-            // Whats the difference in the two lines below???
-            expect(p).to.be.an.instanceof(Player);
-            //expect(p).to.be.instanceof(Player);
-        });
-    });
-});
+//             // Whats the difference in the two lines below???
+//             expect(p).to.be.an.instanceof(Player);
+//             //expect(p).to.be.instanceof(Player);
+//         });
+//     });
+// });
