@@ -161,7 +161,8 @@ function clearRoundOutput(){
 
 // Reset Tie Counter back to 0
 function resetTieCount(){
-    ties = 0;
+    //ties = 0;
+    return 0;
 }
 
 // Play Game
@@ -171,7 +172,7 @@ let ties = 0;
 function runGame(){
     clearRoundOutput();
     resetPlayers();
-    resetTieCount();
+    ties = resetTieCount();
     shuffleCards();
     dealCards();
     

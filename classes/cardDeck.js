@@ -12,7 +12,7 @@ class Card{
         this.numericValue = CARD_DISPLAY.indexOf(value) + 1;
         //what someone would say the value of a card is without a suit (i.e. Ace instead of 1)
         this.displayValue = value;
-        //define that suit of the card
+        //define the suit of the card
         this.suit = suit;
         //full display description of the card (i.e. Queen of Hearts)
         this.textDisplay = `${this.displayValue} of ${this.suit}`;        
