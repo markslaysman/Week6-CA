@@ -7,7 +7,6 @@
 
 // Reset Tie Counter back to 0
 function resetTieCount(){
-    //ties = 0;
     return 0;
 }
 
