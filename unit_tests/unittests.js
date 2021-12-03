@@ -2,7 +2,6 @@
 //import Player from "../classes/player.js";
 //import resetTieCount from "../week6ca.js"
 
-
 // Setting up Unit Tests for War game
 var expect = chai.expect;
 

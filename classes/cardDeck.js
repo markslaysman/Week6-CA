@@ -10,7 +10,7 @@ class Card{
     constructor(value, suit){
         //actual numerical value of card
         this.numericValue = CARD_DISPLAY.indexOf(value) + 1;
-        //what someone would say the value of a card is without a suit (i.e. Ace instead of 1)
+        //what someone would say the value of a card is without a suit (i.e. Ace instead of 1 and King instead of 13)
         this.displayValue = value;
         //define the suit of the card
         this.suit = suit;

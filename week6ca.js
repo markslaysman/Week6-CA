@@ -47,6 +47,15 @@ function shuffleCards(){
     }
 }
 
+if (DEBUG_MODE) {console.log(cardDeck)};
+
+// For/In Loop to print out all cards in the Deck
+if (DEBUG_MODE){
+    for (let card in cardDeck.deck) {
+        console.log(cardDeck.deck[card].showCard());
+    }
+}
+
 //Deal cards to players
 function dealCards() {
     //Using the cardDeck.deck.length to get the array length.  This allows for
@@ -54,7 +63,7 @@ function dealCards() {
     for (let i = 0; i < cardDeck.deck.length; i++) {
         // Checking for even/odd number card to deal to Player1 (odd) or
         // Player2(even).  We are not popping the cards out of the original deck
-        // so we can debug ortrouble shoot any issues later.
+        // so we can debug or trouble shoot any issues later.
         if (i % 2 === 0) {
             if(DEBUG_MODE) {console.log(`Player 1 is getting ${cardDeck.deck[i].showCard()}`)};
             player1.cards.push(cardDeck.deck[i])
@@ -145,24 +154,14 @@ function determineWinner(){
     }
 }
 
-if (DEBUG_MODE) {console.log(cardDeck)};
-
-// For/In Loop to print out all cards in the Deck
-if (DEBUG_MODE){
-    for (let card in cardDeck.deck) {
-        console.log(cardDeck.deck[card].showCard());
-    }
-}
-
 // Clear the Round Output Data on HTML page, otherwise it will keep adding data when a new game is played
 function clearRoundOutput(){
     roundResults.innerHTML = '';
 }
 
 // Reset Tie Counter back to 0
-export default function resetTieCount(){
-    //ties = 0;
-    return 0;
+function resetTieCount(){
+    ties = 0;
 }
 
 // Play Game
@@ -172,7 +171,7 @@ let ties = 0;
 function runGame(){
     clearRoundOutput();
     resetPlayers();
-    ties = resetTieCount();
+    resetTieCount();
     shuffleCards();
     dealCards();
     
